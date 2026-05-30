@@ -202,3 +202,10 @@ body {
     box-shadow: 0 6px 20px rgba(75, 170, 227, 0.4);
     transform: translateY(-5px);
 }
+
+@media (max-width: 768px) {
+    #btnTop {
+        bottom: 20px;
+        right: 20px;
+    }
+}

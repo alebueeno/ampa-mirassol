@@ -90,4 +90,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2000);
     }
 
+    /* ==========================================================================
+       4. MENU MOBILE (HAMBURGER)
+       ========================================================================== */
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (mobileMenu && navLinks) {
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Fechar o menu ao clicar em um link
+        const links = navLinks.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    }
+
 });
