@@ -1,0 +1,120 @@
+/* ==========================================================================
+   LAYOUT GERAL (HEADER, FOOTER)
+   ========================================================================== */
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    z-index: 10;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+}
+
+.navbar .logo {
+    color: var(--texto-claro);
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar .logo i {
+    color: var(--cor-secundaria);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: var(--texto-claro);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--cor-secundaria);
+}
+
+.menu-toggle {
+    display: none;
+    color: var(--texto-claro);
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/* ---------- RODAPÉ ---------- */
+.rodape {
+    background-color: var(--fundo-rodape); 
+    border-top: 4px solid var(--cor-secundaria);
+    color: #d1d5db; 
+    padding: 80px 10% 30px 10%;
+}
+
+.rodape-colunas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.rodape-colunas h4 {
+    color: var(--texto-claro);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.rodape-colunas p {
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 12px; 
+}
+
+.rodape-colunas p i {
+    color: var(--cor-secundaria);
+    font-size: 1.2rem;
+}
+
+.redes-sociais {
+    display: flex;
+    gap: 15px;
+}
+
+.redes-sociais a {
+    color: var(--texto-claro);
+    background-color: rgba(255, 255, 255, 0.05); 
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+}
+
+.redes-sociais a:hover {
+    background-color: var(--cor-secundaria);
+    transform: translateY(-5px);
+    color: var(--texto-claro);
+    box-shadow: 0 5px 15px rgba(75, 170, 227, 0.4); 
+}
+
+.rodape-copyright {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    font-size: 0.85rem;
+}

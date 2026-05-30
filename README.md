@@ -18,7 +18,8 @@ O site atua como um canal digital centralizado para a ONG. As principais funcion
   - Animações fluídas de entrada (*Scroll Reveal*) para manter a atenção do usuário.
   - Implementação de um botão interativo que copia instantaneamente a chave PIX (CNPJ) para a área de transferência do doador, reduzindo atritos na doação.
 - **Integração de Localização:** Mapa do Google (Iframe) incorporado e centrado na sede da AMPA, facilitando o acesso de novos voluntários e adotantes.
-- **Design Responsivo (Mobile-First):** Estrutura fluida que se adapta a qualquer tamanho de tela, essencial para receber o tráfego mobile vindo do Instagram da ONG.
+- **Design Responsivo & Menu Interativo:** Estrutura fluida adaptável a smartphones e tablets, apresentando navegação dinâmica com Menu Hamburger mobile e botão *Back to Top*, ideal para o tráfego advindo do Instagram.
+- **Arquitetura Escalável (Clean Code):** A aplicação adota boas práticas de mercado, com CSS altamente modularizado (`base.css`, `layout.css`, `buttons.css`, etc.) e um JavaScript construído 100% no paradigma Orientado a Objetos (OOP), encapsulando lógicas em classes limpas.
 
 ## 🚀 Tecnologias Utilizadas
 

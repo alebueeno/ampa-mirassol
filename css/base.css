@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+/* ==========================================================================
+   1. VARIÁVEIS GLOBAIS E RESET
+   ========================================================================== */
+:root {
+    --cor-primaria: #005CAA; /* Azul Real */
+    --cor-secundaria: #4BAAE3; /* Azul Claro */
+    --texto-escuro: #2B2B2B; /* Cinza Escuro */
+    --texto-claro: #ffffff;
+    --fundo-claro: #ffffff;
+    --fundo-alternado: #4BAAE3;
+    --fundo-rodape: #005CAA;
+    --fonte-principal: 'Inter', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fonte-principal);
+}
+
+body {
+    color: var(--texto-escuro);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   2. CLASSES UTILITÁRIAS
+   ========================================================================== */
+
+/* Textos */
+.texto-branco { color: var(--texto-claro); }
+.texto-centralizado { text-align: center; }
+
+.titulo-secao {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: var(--cor-primaria);
+}
+
+/* Estrutura */
+.secao {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.fundo-cinza {
+    background-color: #f9f9f9;
+    max-width: 100%;
+    padding: 80px 10%;
+}
+
+/* Efeito Visual */
+.bg-parallax {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Efeito Scroll Reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
