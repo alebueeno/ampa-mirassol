@@ -1,0 +1,266 @@
+/* ==========================================================================
+   0. CABEÇALHO (HERO)
+   ========================================================================== */
+
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.6); 
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 20px;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: var(--cor-secundaria);
+}
+
+.hero h2 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+/* ==========================================================================
+   1. ÍCONES FONTAWESOME (Tamanhos específicos da Home)
+   ========================================================================== */
+.icone-card {
+    font-size: 3.5rem; 
+    color: var(--cor-primaria); 
+    margin-bottom: 20px;
+    display: block; 
+}
+
+.img-valor {
+    font-size: 2.5rem; 
+    color: var(--cor-primaria);
+    width: 50px; 
+    text-align: center; 
+}
+
+/* ==========================================================================
+   2. PRODUTOS (Grid)
+   ========================================================================== */
+.grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background-color: var(--texto-claro);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.card:hover { transform: translateY(-10px); }
+.card h3 { margin-bottom: 15px; color: var(--cor-primaria); }
+
+/* Removido código não utilizado (bloco-publico) */
+
+/* ==========================================================================
+   4. VALORES (Lista com Hover)
+   ========================================================================== */
+.lista-valores {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.lista-valores li {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: var(--texto-claro);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lista-valores li:hover {
+    transform: translateX(10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* ==========================================================================
+   5. CRONOGRAMA (Timeline e Fundo)
+   ========================================================================== */
+
+.timeline {
+    max-width: 600px;
+    margin: 0 auto;
+    border-left: 3px solid var(--cor-primaria);
+    padding-left: 30px;
+}
+
+.timeline-item {
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -38px;
+    top: 0;
+    width: 13px;
+    height: 13px;
+    background-color: var(--cor-primaria);
+    border-radius: 50%;
+}
+
+.timeline-ano {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--cor-primaria);
+    margin-bottom: 10px;
+}
+
+.timeline-texto { color: #ccc; }
+
+/* ==========================================================================
+   6. ESTILOS AMPA (NOVOS ELEMENTOS)
+   ========================================================================== */
+
+/* Navbar */
+.navbar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    z-index: 10;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+}
+
+.navbar .logo {
+    color: var(--texto-claro);
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar .logo i {
+    color: var(--cor-secundaria);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: var(--texto-claro);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--cor-secundaria);
+}
+
+/* Botoes Hero */
+.botoes-hero {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--texto-claro);
+}
+
+.btn-outline:hover {
+    background-color: var(--texto-claro);
+    color: var(--texto-escuro);
+}
+
+/* Sobre nós */
+.texto-sobre {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+/* PIX Container */
+.pix-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.pix-container input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+/* Localizacao */
+.localizacao-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    background-color: rgba(0,0,0,0.5);
+    padding: 40px;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.mapa-info {
+    flex: 1;
+    min-width: 250px;
+}
+
+.mapa-iframe {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 20px;
+        background: rgba(0,0,0,0.9);
+    }
+    .nav-links {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .botoes-hero {
+        flex-direction: column;
+    }
+    .localizacao-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+}

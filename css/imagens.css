@@ -1,0 +1,14 @@
+/* ==========================================================================
+   1. ENDEREÇAMENTO DE IMAGENS GLOBAIS
+   ========================================================================== */
+
+.bg-hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('../img/bg_hero.png');
+    background-color: #000;
+}
+
+.bg-cronograma {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/bg_cronograma.png');
+    padding: 100px 10%;
+    max-width: 100%;
+}

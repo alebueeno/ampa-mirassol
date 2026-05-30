@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+/* ==========================================================================
+   1. VARIÁVEIS GLOBAIS E RESET
+   ========================================================================== */
+:root {
+    --cor-primaria: #005CAA; /* Azul Real */
+    --cor-secundaria: #4BAAE3; /* Azul Claro */
+    --texto-escuro: #2B2B2B; /* Cinza Escuro */
+    --texto-claro: #ffffff;
+    --fundo-claro: #ffffff;
+    --fundo-alternado: #4BAAE3;
+    --fundo-rodape: #005CAA;
+    --fonte-principal: 'Inter', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fonte-principal);
+}
+
+body {
+    color: var(--texto-escuro);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   2. CLASSES UTILITÁRIAS
+   ========================================================================== */
+
+/* Textos */
+.texto-branco { color: var(--texto-claro); }
+.texto-centralizado { text-align: center; }
+
+.titulo-secao {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: var(--cor-primaria);
+}
+
+/* Estrutura */
+.secao {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.fundo-cinza {
+    background-color: #f9f9f9;
+    max-width: 100%;
+    padding: 80px 10%;
+}
+
+/* Efeito Visual */
+.bg-parallax {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* ==========================================================================
+   3. BOTÕES GERAIS E ELEMENTOS GLOBAIS
+   ========================================================================== */
+.btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: var(--cor-primaria);
+    color: var(--texto-claro);
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover { background-color: var(--cor-secundaria); }
+
+/* ==========================================================================
+   4. RODAPÉ GLOBAL
+   ========================================================================== */
+.rodape {
+    background-color: var(--fundo-rodape); 
+    border-top: 4px solid var(--cor-secundaria);
+    color: #d1d5db; 
+    padding: 80px 10% 30px 10%;
+}
+
+.rodape-colunas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.rodape-colunas h4 {
+    color: var(--texto-claro);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.rodape-colunas p {
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 12px; 
+}
+
+.rodape-colunas p i {
+    color: var(--cor-secundaria);
+    font-size: 1.2rem;
+}
+
+.redes-sociais {
+    display: flex;
+    gap: 15px;
+}
+
+.redes-sociais a {
+    color: var(--texto-claro);
+    background-color: rgba(255, 255, 255, 0.05); 
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+}
+
+.redes-sociais a:hover {
+    background-color: var(--cor-secundaria);
+    transform: translateY(-5px);
+    color: var(--texto-claro);
+    box-shadow: 0 5px 15px rgba(75, 170, 227, 0.4); 
+}
+
+.rodape-copyright {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   5. CLASSES INTERATIVAS (JS DYNAMICS)
+   ========================================================================== */
+
+/* Efeito Scroll Reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Botão Voltar ao Topo */
+#btnTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--cor-primaria);
+    color: var(--texto-claro);
+    border: none;
+    outline: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+#btnTop.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.btnTop:hover {
+    background-color: var(--cor-secundaria);
+    box-shadow: 0 6px 20px rgba(75, 170, 227, 0.4);
+    transform: translateY(-5px);
+}
