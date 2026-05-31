@@ -1,18 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
 /* ==========================================================================
    1. VARIÁVEIS GLOBAIS E RESET
    ========================================================================== */
 :root {
-    --cor-primaria: #005CAA; /* Azul Real */
-    --cor-secundaria: #4BAAE3; /* Azul Claro */
-    --texto-escuro: #2B2B2B; /* Cinza Escuro */
-    --texto-claro: #ffffff;
-    --fundo-claro: #ffffff;
-    --fundo-alternado: #4BAAE3;
-    --fundo-rodape: #005CAA;
-    --fonte-principal: 'Inter', sans-serif;
+    /* Cores em HSL para permitir variações de opacidade e saturação (Glassmorphism) */
+    --cor-primaria-h: 207;
+    --cor-primaria-s: 100%;
+    --cor-primaria-l: 33%; /* Azul Real */
+    --cor-primaria: hsl(var(--cor-primaria-h), var(--cor-primaria-s), var(--cor-primaria-l));
+
+    --cor-secundaria-h: 202;
+    --cor-secundaria-s: 73%;
+    --cor-secundaria-l: 59%; /* Azul Claro */
+    --cor-secundaria: hsl(var(--cor-secundaria-h), var(--cor-secundaria-s), var(--cor-secundaria-l));
+
+    --texto-escuro: hsl(210, 10%, 15%);
+    --texto-claro: hsl(0, 0%, 100%);
+    --fundo-claro: hsl(210, 20%, 98%);
+    --fundo-alternado: var(--cor-secundaria);
+    --fundo-rodape: var(--cor-primaria);
+    
+    /* Tipografia Premium */
+    --fonte-principal: 'Plus Jakarta Sans', sans-serif;
+    --fonte-titulos: 'Outfit', sans-serif;
 }
 
 html {
@@ -33,33 +45,40 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     max-width: 100vw;
+    background-color: var(--fundo-claro);
 }
 
 /* ==========================================================================
-   2. CLASSES UTILITÁRIAS
+   2. CLASSES UTILITÁRIAS E TIPOGRAFIA
    ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--fonte-titulos);
+}
 
 /* Textos */
 .texto-branco { color: var(--texto-claro); }
 .texto-centralizado { text-align: center; }
 
 .titulo-secao {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
+    font-weight: 800;
     margin-bottom: 50px;
     color: var(--cor-primaria);
+    letter-spacing: -0.02em;
 }
 
 /* Estrutura */
 .secao {
-    padding: 80px 20px;
+    padding: 100px 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .fundo-cinza {
-    background-color: #f9f9f9;
+    background-color: #f0f4f8;
     max-width: 100%;
-    padding: 80px 10%;
+    padding: 100px 10%;
 }
 
 /* Efeito Visual */
@@ -69,11 +88,11 @@ body {
     background-attachment: fixed;
 }
 
-/* Efeito Scroll Reveal */
+/* Efeito Scroll Reveal com cubic-bezier mais elegante */
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease-out;
+    transform: translateY(40px);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal.active {

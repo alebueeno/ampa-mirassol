@@ -20,10 +20,20 @@
 
 <body>
 
-    <header class="hero bg-hero bg-parallax">
+    <header class="hero" id="hero-section">
+        <!-- Background images absolute positioned for smooth fade -->
+        <div class="hero-bg-slider">
+            <div class="bg-slide active" style="background-image: url('img/ampa frente.jpeg');" role="img" aria-label="Fachada principal da Associação Mirassolense de Proteção aos Animais (AMPA)"></div>
+            <div class="bg-slide" style="background-image: url('img/ampa espaco 1.jpeg');" role="img" aria-label="Visão ampla do espaço interno arborizado e limpo onde os cães e gatos resgatados vivem"></div>
+            <div class="bg-slide" style="background-image: url('img/ampa espaco 2.jpeg');" role="img" aria-label="Baias espaçosas e higienizadas garantindo o bem-estar dos cães abrigados"></div>
+            <div class="bg-slide" style="background-image: url('img/ampa espaco 3.jpeg');" role="img" aria-label="Área de convivência ao ar livre para os animais interagirem de forma saudável"></div>
+            <div class="bg-slide" style="background-image: url('img/ampa espaco 4.jpeg');" role="img" aria-label="Detalhes da estrutura segura e bem cuidada destinada aos animais da instituição"></div>
+            <div class="hero-overlay"></div> <!-- Gradient dark overlay -->
+        </div>
+
         <nav class="navbar">
             <div class="logo">
-                <img src="img/logo ampa 2.png" alt="ONG AMPA Mirassol - Associação de Proteção aos Animais em Mirassol, Resgate, Castração e Adoção" style="height: 40px; border-radius: 4px; margin-right: 10px;">
+                <img src="img/logo ampa 2.png" alt="Logomarca oficial da ONG AMPA Mirassol (Associação Mirassolense de Proteção aos Animais)" style="height: 40px; border-radius: 4px; margin-right: 10px;">
                 AMPA Mirassol
             </div>
             <div class="menu-toggle" id="mobile-menu">
@@ -37,12 +47,26 @@
             </ul>
         </nav>
         
-        <div class="hero-content texto-centralizado texto-branco hero-glass fade-in-up">
-            <h1 class="hero-titulo">Milhares de corações batem sozinhos nas ruas de Mirassol</h1>
-            <h2 class="hero-subtitulo">Eles não pediram para ser abandonados. Nossa missão é reescrever essas histórias com finais felizes, mas não podemos fazer isso sem você.</h2>
-            <div class="botoes-hero">
-                <a href="#como-ajudar" class="btn btn-primary">Quero Salvar uma Vida</a>
-                <a href="https://instagram.com/ampa.mirassol" target="_blank" class="btn btn-outline">Conhecer as Histórias</a>
+        <div class="hero-content-wrapper">
+            <div class="hero-content glass-panel reveal active">
+                <span class="badge">Instituição Protetora de Mirassol</span>
+                <h1>Transformando histórias de abandono em <a href="#finais-felizes" class="link-hero-destaque" title="Conheça alguns finais felizes">finais felizes</a></h1>
+                <p>Nossa missão é acolher, tratar e encontrar lares amorosos para animais em situação de rua ou maus-tratos. Faça parte dessa mudança.</p>
+                <div class="botoes-hero">
+                    <a href="#como-ajudar" class="btn">Quero Ajudar</a>
+                    <a href="https://instagram.com/ampa.mirassol" target="_blank" class="btn btn-outline btn-glass">Conhecer Animais</a>
+                </div>
+            </div>
+
+            <div class="hero-thumbs-container reveal active">
+                <p class="thumbs-title">Conheça nosso espaço</p>
+                <div class="gallery-thumbs" role="group" aria-label="Galeria de imagens das instalações da AMPA">
+                    <div class="thumb active" data-index="0" style="background-image: url('img/ampa frente.jpeg');" title="Fachada da Instituição" role="button" tabindex="0" aria-label="Visualizar a Fachada da Instituição"></div>
+                    <div class="thumb" data-index="1" style="background-image: url('img/ampa espaco 1.jpeg');" title="Espaço Interno 1" role="button" tabindex="0" aria-label="Visualizar área arborizada do abrigo"></div>
+                    <div class="thumb" data-index="2" style="background-image: url('img/ampa espaco 2.jpeg');" title="Espaço Interno 2" role="button" tabindex="0" aria-label="Visualizar setor das baias dos cães"></div>
+                    <div class="thumb" data-index="3" style="background-image: url('img/ampa espaco 3.jpeg');" title="Espaço Interno 3" role="button" tabindex="0" aria-label="Visualizar pátio de convivência"></div>
+                    <div class="thumb" data-index="4" style="background-image: url('img/ampa espaco 4.jpeg');" title="Espaço Interno 4" role="button" tabindex="0" aria-label="Visualizar detalhes da estrutura da ONG"></div>
+                </div>
             </div>
         </div>
     </header>
@@ -69,6 +93,29 @@
                     <h3>Adoção Responsável</h3>
                     <p>Buscamos tutores responsáveis e amorosos. Realizamos entrevistas para garantir o 'match' perfeito entre a família e o animal.</p>
                 </article>
+            </div>
+        </section>
+
+        <section id="finais-felizes" class="secao">
+            <header>
+                <h2 class="titulo-secao texto-centralizado">Finais Felizes</h2>
+                <p class="texto-centralizado texto-sobre">Conheça algumas das histórias de adoção que aquecem nossos corações. Cada imagem representa uma vida transformada e um novo recomeço cheio de amor.</p>
+            </header>
+            
+            <div class="grid-adocao reveal">
+                <div class="item-adocao"><img src="img/adocao1.jpg" alt="Cachorro SRD (Sem Raça Definida) sorrindo feliz com sua nova família adotiva após adoção na AMPA Mirassol" loading="lazy"></div>
+                <div class="item-adocao"><img src="img/adocao2.jpg" alt="Gatinho resgatado dormindo tranquilo e seguro em sua nova caminha, desfrutando de um lar amoroso" loading="lazy"></div>
+                <div class="item-adocao"><img src="img/adocao3.jpg" alt="Criança abraçando emocionada seu novo cãozinho recém-adotado na ONG AMPA" loading="lazy"></div>
+                <div class="item-adocao"><img src="img/adocao4.jpg" alt="Cachorro idoso que ganhou uma segunda chance passeando no parque ao lado de seus tutores definitivos" loading="lazy"></div>
+                <div class="item-adocao"><img src="img/adocao5.jpg" alt="Gato filhote curioso brincando em sua nova casa após ter sido resgatado e doado" loading="lazy"></div>
+                <div class="item-adocao"><img src="img/adocao6.jpg" alt="Família reunida tirando foto com o cachorro que acabou de ser adotado na associação protetora" loading="lazy"></div>
+                <div class="item-adocao"><img src="img/adocao7.jpg" alt="Dois gatinhos irmãos que foram adotados juntos para não se separarem, descansando confortavelmente no sofá" loading="lazy"></div>
+                <div class="item-adocao"><img src="img/adocao8.jpg" alt="Cachorrinho de porte pequeno recebendo carinho no colo do seu novo tutor" loading="lazy"></div>
+                <div class="item-adocao"><img src="img/adocao9.jpg" alt="Final feliz de adoção: cachorro resgatado das ruas agora exibe um semblante feliz e saudável em segurança" loading="lazy"></div>
+            </div>
+
+            <div class="texto-centralizado" style="margin-top: 60px;">
+                <a href="https://instagram.com/ampa.mirassol" target="_blank" class="btn"><i class="fa-brands fa-instagram"></i> Confira mais aqui</a>
             </div>
         </section>
 
@@ -139,7 +186,7 @@
         <div class="rodape-colunas">
             <div>
                 <h4>
-                    <img src="img/logo ampa 2.png" alt="Logo Institucional AMPA Mirassol Proteção Animal" style="height: 30px; border-radius: 4px; margin-right: 8px; vertical-align: middle;">
+                    <img src="img/logo ampa 2.png" alt="Logomarca secundária da ONG AMPA Mirassol Proteção Animal" style="height: 30px; border-radius: 4px; margin-right: 8px; vertical-align: middle;">
                     AMPA Mirassol
                 </h4>
                 <p>Dedicados a salvar vidas e promover o bem-estar animal através do amor, respeito e solidariedade.</p>

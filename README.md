@@ -12,6 +12,13 @@ O projeto é fruto do esforço colaborativo de uma equipe de estudantes dedicado
 
 O site atua como um canal digital centralizado para a ONG. As principais funcionalidades e características entregues pela equipe incluem:
 
+### ✨ Atualizações Recentes (Design Premium & POO)
+- **Hero Slider & Glassmorphism**: Reformulação completa do cabeçalho da página (Hero) com um sistema de *slider* dinâmico para apresentar as fotos da instituição (frente e espaços internos). A interface ganhou um aspecto premium utilizando técnicas de *Glassmorphism* (painéis translúcidos) e uma paleta de cores HSL dinâmica.
+- **Seção "Finais Felizes"**: Inclusão de uma nova área dedicada a histórias reais de adoção, exibindo 9 imagens em um elegante formato *Masonry Grid* com micro-animações avançadas de *hover* e *cubic-bezier*. Um link interativo (*gatilho*) foi embutido diretamente na frase principal do Hero.
+- **Tipografia Moderna**: Transição para o uso de pares tipográficos de alto padrão (*Outfit* para títulos e *Plus Jakarta Sans* para textos), proporcionando um visual muito mais sofisticado e limpo.
+- **Arquitetura POO Avançada**: Refatoração do JavaScript utilizando Programação Orientada a Objetos para a criação da classe independente `HeroSlider`, seguindo diretrizes estritas de responsabilidade única e encapsulamento.
+
+### 📌 Funcionalidades Core
 - **Design Institucional (UI/UX):** Uma identidade visual construída sobre a paleta oficial da ONG (Azul Real e Azul Celeste), garantindo uma interface limpa, séria e acolhedora.
 - **Estrutura Semântica e Acessível (SEO):** Utilização de HTML5 semântico (`<main>`, `<article>`, `<address>`) e atributos `alt` precisos para garantir acessibilidade e otimizar o ranqueamento orgânico no Google (SEO local).
 - **Interatividade & Engajamento:** 

@@ -3,6 +3,54 @@
  * Implementação Orientada a Objetos (OOP)
  */
 
+class HeroSlider {
+    constructor() {
+        this.slides = document.querySelectorAll('.bg-slide');
+        this.thumbs = document.querySelectorAll('.thumb');
+        this.currentIndex = 0;
+        this.interval = null;
+        this.delay = 6000;
+    }
+
+    init() {
+        if (this.slides.length === 0 || this.thumbs.length === 0) return;
+        
+        this.thumbs.forEach((thumb) => {
+            thumb.addEventListener('click', (e) => {
+                const index = parseInt(e.currentTarget.dataset.index, 10);
+                this.goToSlide(index);
+                this.resetAutoplay();
+            });
+        });
+
+        this.startAutoplay();
+    }
+
+    goToSlide(index) {
+        if (index === this.currentIndex) return;
+
+        this.slides[this.currentIndex].classList.remove('active');
+        this.thumbs[this.currentIndex].classList.remove('active');
+
+        this.currentIndex = index;
+
+        this.slides[this.currentIndex].classList.add('active');
+        this.thumbs[this.currentIndex].classList.add('active');
+    }
+
+    startAutoplay() {
+        this.interval = setInterval(() => {
+            let nextIndex = (this.currentIndex + 1) % this.slides.length;
+            this.goToSlide(nextIndex);
+        }, this.delay);
+    }
+
+    resetAutoplay() {
+        if (this.interval) clearInterval(this.interval);
+        this.startAutoplay();
+    }
+}
+
 class ScrollReveal {
     constructor() {
         this.reveals = document.querySelectorAll('.reveal');
@@ -132,6 +180,7 @@ class App {
         this.backToTop = new BackToTopButton();
         this.pixCopier = new PixCopier();
         this.mobileMenu = new MobileMenu();
+        this.heroSlider = new HeroSlider();
     }
 
     init() {
@@ -139,6 +188,7 @@ class App {
         this.backToTop.init();
         this.pixCopier.init();
         this.mobileMenu.init();
+        this.heroSlider.init();
     }
 }
 

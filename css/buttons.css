@@ -5,42 +5,62 @@
 /* Botão Sólido Principal */
 .btn {
     display: inline-block;
-    padding: 15px 30px;
+    padding: 16px 36px;
     background-color: var(--cor-primaria);
     color: var(--texto-claro);
     text-decoration: none;
     font-weight: 600;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    font-size: 1.05rem;
+    border-radius: 50px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid transparent;
 }
 
 .btn:hover {
     background-color: var(--cor-secundaria);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(var(--cor-secundaria-h), var(--cor-secundaria-s), var(--cor-secundaria-l), 0.3);
 }
 
 /* Botão Outline */
 .btn-outline {
     background-color: transparent;
-    border: 2px solid var(--texto-claro);
+    border: 1px solid var(--texto-claro);
     color: var(--texto-claro);
     display: inline-block;
-    padding: 13px 30px;
+    padding: 16px 36px;
     text-decoration: none;
     font-weight: 600;
-    border-radius: 5px;
-    transition: all 0.3s ease;
+    font-size: 1.05rem;
+    border-radius: 50px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-outline:hover {
     background-color: var(--texto-claro);
     color: var(--texto-escuro);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Botão Glassmorphism (Novo) */
+.btn-glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-glass:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: var(--texto-claro);
 }
 
 /* Botões do Hero */
 .botoes-hero {
     display: flex;
     gap: 20px;
-    justify-content: center;
+    justify-content: flex-start;
     margin-top: 30px;
 }
 
