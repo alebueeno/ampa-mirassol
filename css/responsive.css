@@ -58,11 +58,17 @@
         display: flex;
         flex-direction: column; 
         align-items: center; 
+        gap: 20px; /* Mais próximos para reduzir scroll */
     }
     
     /* Nova Seção Como Ajudar */
     .ajuda-container {
         grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .ajuda-pix {
+        padding: 30px 20px; /* Compactando painel PIX */
     }
     
     .ajuda-item {
@@ -73,6 +79,24 @@
     .localizacao-container {
         flex-direction: column;
         padding: 20px;
+    }
+
+    /* Correção do bug do fundo (Parallax) não aparecer em iPhones/Mobile */
+    .bg-parallax {
+        background-attachment: scroll;
+    }
+
+    /* Reduzir espaços em branco e rolagem excessiva no celular */
+    .secao {
+        padding: 40px 15px;
+    }
+
+    .fundo-cinza {
+        padding: 40px 5%;
+    }
+
+    .rodape {
+        padding: 40px 5% 20px 5%;
     }
 
     /* Botões Flutuantes */
