@@ -77,26 +77,38 @@
                 <header>
                     <h2 class="titulo-secao texto-centralizado">Como Ajudar</h2>
                 </header>
-                <div class="grid-cards" style="margin-top: 40px;">
-                    <article class="card texto-centralizado reveal">
-                        <i class="fa-brands fa-pix icone-card"></i>
+                <div class="ajuda-container reveal" style="margin-top: 40px;">
+                    <article class="ajuda-pix texto-centralizado">
+                        <i class="fa-brands fa-pix icone-pix-destaque"></i>
                         <h3>Doações via PIX</h3>
                         <p>Qualquer valor ajuda a custear ração e veterinário. Contribua com a nossa chave PIX (CNPJ):</p>
                         <div class="pix-container">
                             <input type="text" id="pix-chave" value="01522642000113" readonly aria-label="Chave PIX da AMPA">
-                            <button id="btn-copiar-pix" class="btn">Copiar Chave</button>
+                            <button id="btn-copiar-pix" class="btn btn-outline">Copiar Chave</button>
                         </div>
                     </article>
-                    <article class="card texto-centralizado reveal">
-                        <i class="fa-solid fa-bag-shopping icone-card"></i>
-                        <h3>Pontos de Coleta</h3>
-                        <p>Doe ração, medicamentos ou cobertores nos nossos pontos de arrecadação espalhados por Mirassol.</p>
-                    </article>
-                    <article class="card texto-centralizado reveal">
-                        <i class="fa-solid fa-heart icone-card"></i>
-                        <h3>Apadrinhamento</h3>
-                        <p>Não pode adotar? Apadrinhe um de nossos animais e ajude a cobrir seus custos mensais com alimentação e cuidados.</p>
-                    </article>
+                    
+                    <div class="ajuda-outros">
+                        <article class="ajuda-item">
+                            <div class="ajuda-icone-circulo">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                            </div>
+                            <div>
+                                <h3>Pontos de Coleta</h3>
+                                <p>Doe ração, medicamentos ou cobertores nos nossos pontos de arrecadação espalhados por Mirassol.</p>
+                            </div>
+                        </article>
+                        
+                        <article class="ajuda-item">
+                            <div class="ajuda-icone-circulo">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                            <div>
+                                <h3>Apadrinhamento</h3>
+                                <p>Não pode adotar? Apadrinhe um de nossos animais e ajude a cobrir seus custos mensais com alimentação e cuidados.</p>
+                            </div>
+                        </article>
+                    </div>
                 </div>
             </div>
         </section>

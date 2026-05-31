@@ -2,7 +2,7 @@
    CABEÇALHO DA HOME (HERO)
    ========================================================================== */
 .hero {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -137,6 +137,87 @@
     margin: 0 auto;
     font-size: 1.1rem;
     color: #555;
+}
+
+/* ==========================================================================
+   SEÇÃO COMO AJUDAR
+   ========================================================================== */
+.ajuda-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.ajuda-pix {
+    background-color: var(--cor-primaria);
+    color: var(--texto-claro);
+    padding: 50px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 92, 170, 0.2);
+    /* Sem hover translateY para não atrapalhar o clique! */
+}
+
+.ajuda-pix h3 {
+    margin-bottom: 15px;
+    color: var(--texto-claro);
+    font-size: 1.8rem;
+}
+
+.ajuda-pix p {
+    color: #e0f0ff;
+    margin-bottom: 20px;
+}
+
+.icone-pix-destaque {
+    font-size: 4rem;
+    color: var(--cor-secundaria);
+    margin-bottom: 20px;
+    display: block;
+}
+
+.ajuda-outros {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.ajuda-item {
+    background-color: var(--texto-claro);
+    padding: 30px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.ajuda-item:hover {
+    transform: translateX(10px);
+}
+
+.ajuda-item h3 {
+    margin-bottom: 5px;
+    color: var(--cor-primaria);
+}
+
+.ajuda-item p {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.ajuda-icone-circulo {
+    background-color: #f0f8ff;
+    color: var(--cor-primaria);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
 }
 
 .pix-container {

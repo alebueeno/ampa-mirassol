@@ -34,6 +34,16 @@
     .hero { 
         flex-direction: column; 
         text-align: center; 
+        padding-top: 100px; /* Evitar sobreposição com o navbar */
+        padding-bottom: 50px;
+    }
+    
+    .hero h1 {
+        font-size: 2.2rem; /* Menor para caber no celular sem estourar */
+    }
+
+    .hero h2 {
+        font-size: 1rem;
     }
     
     .botoes-hero {
@@ -47,6 +57,16 @@
         align-items: center; 
     }
     
+    /* Nova Seção Como Ajudar */
+    .ajuda-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .ajuda-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
     .localizacao-container {
         flex-direction: column;
         padding: 20px;
