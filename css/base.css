@@ -17,6 +17,8 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100vw;
 }
 
 * {
@@ -29,6 +31,8 @@ html {
 body {
     color: var(--texto-escuro);
     line-height: 1.6;
+    overflow-x: hidden;
+    max-width: 100vw;
 }
 
 /* ==========================================================================

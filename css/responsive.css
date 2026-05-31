@@ -39,11 +39,14 @@
     }
     
     .hero h1 {
-        font-size: 2.2rem; /* Menor para caber no celular sem estourar */
+        font-size: 1.8rem; /* Tamanho seguro para todas as telas */
+        line-height: 1.3;
+        word-break: break-word;
     }
 
     .hero h2 {
         font-size: 1rem;
+        padding: 0 10px;
     }
     
     .botoes-hero {
