@@ -7,7 +7,6 @@ class HeroSlider {
     constructor() {
         this.slides = document.querySelectorAll('.bg-slide');
         this.thumbs = document.querySelectorAll('.thumb');
-        this.btnExpand = document.getElementById('btn-expand-hero');
         this.lightbox = document.getElementById('hero-lightbox');
         this.lightboxImg = document.getElementById('lightbox-img');
         this.lightboxClose = document.querySelector('.lightbox-close');
@@ -24,12 +23,12 @@ class HeroSlider {
             thumb.addEventListener('click', (e) => {
                 const index = parseInt(e.currentTarget.dataset.index, 10);
                 this.goToSlide(index);
+                this.openLightbox();
                 this.resetAutoplay();
             });
         });
 
-        if (this.btnExpand && this.lightbox) {
-            this.btnExpand.addEventListener('click', () => this.openLightbox());
+        if (this.lightbox) {
             this.lightboxClose.addEventListener('click', () => this.closeLightbox());
             this.lightbox.addEventListener('click', (e) => {
                 if (e.target === this.lightbox) this.closeLightbox();
