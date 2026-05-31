@@ -79,6 +79,12 @@
     .localizacao-container {
         flex-direction: column;
         padding: 20px;
+        width: 100%;
+    }
+
+    .mapa-info, .mapa-iframe {
+        min-width: 100%;
+        width: 100%;
     }
 
     /* Correção do bug do fundo (Parallax) não aparecer em iPhones/Mobile */

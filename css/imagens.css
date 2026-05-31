@@ -3,8 +3,8 @@
    ========================================================================== */
 
 .bg-hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('../img/bg_hero.png');
-    background-color: #000;
+    background-image: linear-gradient(rgba(0, 92, 170, 0.15), rgba(0, 0, 0, 0.85)), url('../img/bg_hero_sad.png');
+    background-color: #050505;
 }
 
 .bg-cronograma {
