@@ -7,6 +7,11 @@ class HeroSlider {
     constructor() {
         this.slides = document.querySelectorAll('.bg-slide');
         this.thumbs = document.querySelectorAll('.thumb');
+        this.btnExpand = document.getElementById('btn-expand-hero');
+        this.lightbox = document.getElementById('hero-lightbox');
+        this.lightboxImg = document.getElementById('lightbox-img');
+        this.lightboxClose = document.querySelector('.lightbox-close');
+
         this.currentIndex = 0;
         this.interval = null;
         this.delay = 6000;
@@ -23,6 +28,29 @@ class HeroSlider {
             });
         });
 
+        if (this.btnExpand && this.lightbox) {
+            this.btnExpand.addEventListener('click', () => this.openLightbox());
+            this.lightboxClose.addEventListener('click', () => this.closeLightbox());
+            this.lightbox.addEventListener('click', (e) => {
+                if (e.target === this.lightbox) this.closeLightbox();
+            });
+        }
+
+        this.startAutoplay();
+    }
+
+    openLightbox() {
+        const bgImageStyle = this.slides[this.currentIndex].style.backgroundImage;
+        const urlMatch = bgImageStyle.match(/url\(["']?(.*?)["']?\)/);
+        if (urlMatch && urlMatch[1]) {
+            this.lightboxImg.src = urlMatch[1];
+            this.lightbox.classList.add('active');
+            if (this.interval) clearInterval(this.interval);
+        }
+    }
+
+    closeLightbox() {
+        this.lightbox.classList.remove('active');
         this.startAutoplay();
     }
 
@@ -39,6 +67,7 @@ class HeroSlider {
     }
 
     startAutoplay() {
+        if (this.interval) clearInterval(this.interval);
         this.interval = setInterval(() => {
             let nextIndex = (this.currentIndex + 1) % this.slides.length;
             this.goToSlide(nextIndex);
@@ -46,7 +75,6 @@ class HeroSlider {
     }
 
     resetAutoplay() {
-        if (this.interval) clearInterval(this.interval);
         this.startAutoplay();
     }
 }
