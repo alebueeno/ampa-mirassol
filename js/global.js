@@ -116,6 +116,10 @@ class HeroSlider {
         this.thumbs[this.currentIndex].classList.add('active');
     }
 
+    stopAutoplay() {
+        if (this.interval) clearInterval(this.interval);
+    }
+
     startAutoplay() {
         if (this.interval) clearInterval(this.interval);
         this.interval = setInterval(() => {
