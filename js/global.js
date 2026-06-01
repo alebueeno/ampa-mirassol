@@ -403,8 +403,15 @@ class AdocaoCarousel {
             onSwipeLeft: () => this.move(1),
             onSwipeRight: () => this.move(-1),
             onMove: (diffX) => {
-                const itemWidth = this.items[0].offsetWidth + 15;
-                const baseMove = -(this.currentIndex * itemWidth);
+                const itemWidth = this.items[0].offsetWidth;
+                const gap = 15;
+                let baseMove = -(this.currentIndex * (itemWidth + gap));
+                
+                if (this.currentIndex === this.items.length - 1) {
+                    const containerWidth = this.track.parentElement.offsetWidth;
+                    baseMove = -(this.currentIndex * (itemWidth + gap)) + (containerWidth - itemWidth);
+                }
+                
                 this.track.style.transition = 'none';
                 this.track.style.transform = `translateX(${baseMove + diffX}px)`;
             },
@@ -447,7 +454,13 @@ class AdocaoCarousel {
         
         const itemWidth = this.items[0].offsetWidth;
         const gap = 15;
-        const moveAmount = this.currentIndex * (itemWidth + gap);
+        let moveAmount = this.currentIndex * (itemWidth + gap);
+        
+        // No último slide, ajusta para colar na direita e mostrar o item anterior
+        if (this.currentIndex === this.items.length - 1) {
+            const containerWidth = this.track.parentElement.offsetWidth;
+            moveAmount = (this.currentIndex * (itemWidth + gap)) - (containerWidth - itemWidth);
+        }
         
         this.track.style.transform = `translateX(-${moveAmount}px)`;
         this.updateDots();

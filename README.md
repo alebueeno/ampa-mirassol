@@ -14,7 +14,7 @@ O site atua como um canal digital centralizado para a ONG, entregando uma experi
 
 - **Design Institucional Premium (UI/UX):** Interface baseada na paleta oficial da ONG (Azul Real e Azul Celeste), enriquecida com técnicas de *Glassmorphism* (painéis translúcidos) e pares tipográficos modernos (*Outfit* e *Plus Jakarta Sans*).
 - **Galeria de Adoções Híbrida:** Uma seção inovadora dedicada às histórias de adoção. Em telas grandes (Desktop), exibe um elegante *Masonry Grid*. Em dispositivos móveis (Smartphones), transforma-se automaticamente em um **Carrossel Interativo** com suporte a rolagem nativa por toque (*Touch Swipe*).
-- **Hero Dinâmico e Lightbox:** Cabeçalho interativo com um sistema de *slider* em background e uma galeria expansível em tela cheia (Lightbox Modal) com controles de navegação completos.
+- **Hero Dinâmico e Lightbox:** Cabeçalho interativo com um sistema de *slider* em background e uma galeria expansível em tela cheia (Lightbox Modal) com controles de navegação completos (Setas, Swipe Tátil e Paginação em Dots).
 - **Interatividade & Engajamento:** 
   - Animações fluídas de entrada (*Scroll Reveal*).
   - Implementação de um botão interativo que copia instantaneamente a chave PIX (CNPJ) para a área de transferência do doador, reduzindo atritos.
@@ -33,8 +33,8 @@ A aplicação foi construída com foco absoluto em performance, dispensando o us
   - Media Queries rigorosas para garantir a experiência *Mobile First*.
 - **JavaScript (Vanilla) & POO**: 
   - Arquitetura 100% estruturada no paradigma de **Programação Orientada a Objetos (OOP)**.
-  - Classes modulares e encapsuladas (`HeroSlider`, `AdocaoCarousel`, `PixCopier`, `ScrollReveal`, `MobileMenu`).
-  - Cálculo matemático avançado para detecção de gestos na tela (`touchstart`, `touchmove`, `touchend`) alimentando o motor customizado do carrossel mobile.
+  - Classes modulares, desacopladas e com alto índice de reaproveitamento (`HeroSlider`, `AdocaoCarousel`, `SwipeHandler`, `PixCopier`, etc).
+  - Implementação nativa de cálculos matemáticos para detecção de gestos na tela (`touchstart`, `touchmove`, `touchend`), entregando um motor de rolagem customizado (Swipe) tanto para galerias mobile quanto para o Lightbox.
 - **Fontes e Ícones**: Integração com Google Fonts e Font Awesome.
 
 ## 🤝 Acesso e Execução Local
