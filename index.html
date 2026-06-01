@@ -41,6 +41,7 @@
             </div>
             <ul class="nav-links">
                 <li><a href="#quem-somos">Quem Somos</a></li>
+                <li><a href="#adocoes">Adoções</a></li>
                 <li><a href="#como-ajudar">Como Ajudar</a></li>
                 <li><a href="#como-chegar">Como Chegar</a></li>
                 <li><a href="#contato">Contato</a></li>
@@ -50,7 +51,7 @@
         <div class="hero-content-wrapper">
             <div class="hero-content glass-panel reveal active">
                 <span class="badge">Instituição Protetora de Mirassol</span>
-                <h1>Transformando histórias de abandono em <a href="#finais-felizes" class="link-hero-destaque" title="Conheça alguns finais felizes">finais felizes</a></h1>
+                <h1>Transformando histórias de abandono em <a href="#adocoes" class="link-hero-destaque" title="Conheça nossas histórias de adoção">finais felizes</a></h1>
                 <p>Nossa missão é acolher, tratar e encontrar lares amorosos para animais em situação de rua ou maus-tratos. Faça parte dessa mudança.</p>
                 <div class="botoes-hero">
                     <a href="#como-ajudar" class="btn">Quero Ajudar</a>
@@ -96,23 +97,33 @@
             </div>
         </section>
 
-        <section id="finais-felizes" class="secao">
+        <section id="adocoes" class="secao">
             <header>
-                <h2 class="titulo-secao texto-centralizado">Finais Felizes</h2>
+                <h2 class="titulo-secao texto-centralizado">Adoções</h2>
                 <p class="texto-centralizado texto-sobre">Conheça algumas das histórias de adoção que aquecem nossos corações. Cada imagem representa uma vida transformada e um novo recomeço cheio de amor.</p>
             </header>
             
-            <div class="grid-adocao reveal">
-                <div class="item-adocao"><img src="img/adocao1.jpg" alt="Cachorro SRD (Sem Raça Definida) sorrindo feliz com sua nova família adotiva após adoção na AMPA Mirassol" loading="lazy"></div>
-                <div class="item-adocao"><img src="img/adocao2.jpg" alt="Gatinho resgatado dormindo tranquilo e seguro em sua nova caminha, desfrutando de um lar amoroso" loading="lazy"></div>
-                <div class="item-adocao"><img src="img/adocao3.jpg" alt="Criança abraçando emocionada seu novo cãozinho recém-adotado na ONG AMPA" loading="lazy"></div>
-                <div class="item-adocao"><img src="img/adocao4.jpg" alt="Cachorro idoso que ganhou uma segunda chance passeando no parque ao lado de seus tutores definitivos" loading="lazy"></div>
-                <div class="item-adocao"><img src="img/adocao5.jpg" alt="Gato filhote curioso brincando em sua nova casa após ter sido resgatado e doado" loading="lazy"></div>
-                <div class="item-adocao"><img src="img/adocao6.jpg" alt="Família reunida tirando foto com o cachorro que acabou de ser adotado na associação protetora" loading="lazy"></div>
-                <div class="item-adocao"><img src="img/adocao7.jpg" alt="Dois gatinhos irmãos que foram adotados juntos para não se separarem, descansando confortavelmente no sofá" loading="lazy"></div>
-                <div class="item-adocao"><img src="img/adocao8.jpg" alt="Cachorrinho de porte pequeno recebendo carinho no colo do seu novo tutor" loading="lazy"></div>
-                <div class="item-adocao"><img src="img/adocao9.jpg" alt="Final feliz de adoção: cachorro resgatado das ruas agora exibe um semblante feliz e saudável em segurança" loading="lazy"></div>
+            <div class="carousel-wrapper reveal" style="margin-top: 40px;">
+                <button class="carousel-btn prev" aria-label="Foto anterior"><i class="fa-solid fa-chevron-left"></i></button>
+
+                <div class="carousel-container" id="adocao-carousel">
+                    <div class="grid-adocao carousel-track">
+                        <div class="item-adocao"><img src="img/adocao1.jpg" alt="Cachorro SRD (Sem Raça Definida) sorrindo feliz com sua nova família adotiva após adoção na AMPA Mirassol" loading="lazy"></div>
+                        <div class="item-adocao"><img src="img/adocao2.jpg" alt="Gatinho resgatado dormindo tranquilo e seguro em sua nova caminha, desfrutando de um lar amoroso" loading="lazy"></div>
+                        <div class="item-adocao"><img src="img/adocao3.jpg" alt="Criança abraçando emocionada seu novo cãozinho recém-adotado na ONG AMPA" loading="lazy"></div>
+                        <div class="item-adocao"><img src="img/adocao4.jpg" alt="Cachorro idoso que ganhou uma segunda chance passeando no parque ao lado de seus tutores definitivos" loading="lazy"></div>
+                        <div class="item-adocao"><img src="img/adocao5.jpg" alt="Gato filhote curioso brincando em sua nova casa após ter sido resgatado e doado" loading="lazy"></div>
+                        <div class="item-adocao"><img src="img/adocao6.jpg" alt="Família reunida tirando foto com o cachorro que acabou de ser adotado na associação protetora" loading="lazy"></div>
+                        <div class="item-adocao"><img src="img/adocao7.jpg" alt="Dois gatinhos irmãos que foram adotados juntos para não se separarem, descansando confortavelmente no sofá" loading="lazy"></div>
+                        <div class="item-adocao"><img src="img/adocao8.jpg" alt="Cachorrinho de porte pequeno recebendo carinho no colo do seu novo tutor" loading="lazy"></div>
+                        <div class="item-adocao"><img src="img/adocao9.jpg" alt="Final feliz de adoção: cachorro resgatado das ruas agora exibe um semblante feliz e saudável em segurança" loading="lazy"></div>
+                    </div>
+                </div>
+
+                <button class="carousel-btn next" aria-label="Próxima foto"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
+            
+            <div class="carousel-dots" id="adocao-dots"></div>
 
             <div class="texto-centralizado" style="margin-top: 60px;">
                 <a href="https://instagram.com/ampa.mirassol" target="_blank" class="btn"><i class="fa-brands fa-instagram"></i> Confira mais aqui</a>
@@ -216,8 +227,10 @@
 
     <!-- Lightbox Modal para o Hero -->
     <div id="hero-lightbox" class="lightbox">
+        <button class="lightbox-btn prev" aria-label="Imagem anterior"><i class="fa-solid fa-chevron-left"></i></button>
         <span class="lightbox-close" aria-label="Fechar">&times;</span>
         <img id="lightbox-img" src="" alt="Imagem Ampliada da Instituição">
+        <button class="lightbox-btn next" aria-label="Próxima imagem"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
 
 </body>

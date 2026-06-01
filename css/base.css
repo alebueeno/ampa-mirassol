@@ -70,7 +70,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Estrutura */
 .secao {
-    padding: 100px 20px;
+    padding: 60px 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -78,7 +78,7 @@ h1, h2, h3, h4, h5, h6 {
 .fundo-cinza {
     background-color: #f0f4f8;
     max-width: 100%;
-    padding: 100px 10%;
+    padding: 60px 10%;
 }
 
 /* Efeito Visual */

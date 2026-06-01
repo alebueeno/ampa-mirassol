@@ -144,15 +144,88 @@
 
     /* Reduzir espaços em branco e rolagem excessiva no celular */
     .secao {
-        padding: 40px 15px;
+        padding: 30px 15px; /* Compactado */
     }
 
     .fundo-cinza {
-        padding: 40px 5%;
+        padding: 30px 15px;
     }
 
     .rodape {
-        padding: 40px 5% 20px 5%;
+        padding: 30px 15px 15px 15px;
+    }
+    
+    .titulo-secao {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+
+    /* Transformando a grid em Carrossel no Mobile */
+    .carousel-wrapper {
+        display: block;
+        position: relative;
+    }
+    
+    .carousel-container {
+        overflow: hidden;
+        width: 100%;
+        touch-action: pan-y pinch-zoom; /* Permite scroll vertical, previne horizontal */
+        border-radius: 12px;
+    }
+
+    .carousel-track {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 15px;
+        transition: transform 0.3s ease-out;
+        margin-top: 0;
+    }
+
+    .item-adocao {
+        flex: 0 0 85%; /* Exibe 1 item completo e parte do próximo */
+        max-width: 85%;
+        border-radius: 12px;
+    }
+
+    .carousel-btn {
+        display: flex;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255,255,255,0.9);
+        border: none;
+        width: 40px; height: 40px;
+        border-radius: 50%;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        z-index: 10;
+        cursor: pointer;
+        color: var(--cor-primaria);
+    }
+    
+    .carousel-btn.prev { left: -15px; }
+    .carousel-btn.next { right: -15px; }
+
+    .carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 20px;
+    }
+
+    .dot {
+        width: 10px; height: 10px;
+        border-radius: 50%;
+        background: #ccc;
+        border: none;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.3s;
+    }
+
+    .dot.active {
+        background: var(--cor-primaria);
+        transform: scale(1.2);
     }
 
     /* Botões Flutuantes */

@@ -452,13 +452,27 @@
 }
 
 /* ==========================================================================
-   SEÇÃO FINAIS FELIZES
+   SEÇÃO ADOÇÕES (CARROSSEL MOBILE)
    ========================================================================== */
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+}
+.carousel-container {
+    width: 100%;
+}
+.carousel-btn {
+    display: none;
+}
+.carousel-dots {
+    display: none;
+}
+
 .grid-adocao {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 25px;
-    margin-top: 60px;
+    width: 100%;
 }
 
 .item-adocao {
@@ -523,4 +537,38 @@
 }
 .lightbox-close:hover {
     color: var(--cor-secundaria);
+}
+
+.lightbox-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    font-size: 1.8rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10000;
+    transition: background 0.3s, transform 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.lightbox-btn:hover {
+    background: rgba(0,0,0,0.8);
+    transform: translateY(-50%) scale(1.1);
+}
+.lightbox-btn.prev { left: 20px; }
+.lightbox-btn.next { right: 20px; }
+@media (max-width: 768px) {
+    .lightbox-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    .lightbox-btn.prev { left: 10px; }
+    .lightbox-btn.next { right: 10px; }
 }
