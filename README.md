@@ -1,7 +1,5 @@
 # Landing Page Institucional - AMPA Mirassol 🐾
 
-Acesso ao projeto ao vivo: [https://alebueeno.github.io/ampa-mirassol/]
-
 Sobre o Projeto
 
 Este projeto consiste no desenvolvimento de uma Landing Page moderna, acessível e responsiva para a **AMPA (Associação Mirassolense de Proteção aos Animais)**, uma ONG dedicada ao resgate, acolhimento, tratamento e adoção de animais em situação de vulnerabilidade na cidade de Mirassol - SP.
