@@ -563,3 +563,26 @@
     .lightbox-btn.prev { left: 10px; }
     .lightbox-btn.next { right: 10px; }
 }
+
+.lightbox-dots {
+    display: flex;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10001;
+    gap: 12px;
+}
+/* Reutilizando .dot do responsive.css para o lightbox */
+.lightbox-dots .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+.lightbox-dots .dot.active {
+    background: white;
+    transform: scale(1.2);
+}

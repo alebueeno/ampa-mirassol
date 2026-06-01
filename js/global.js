@@ -3,6 +3,88 @@
  * Implementação Orientada a Objetos (OOP)
  */
 
+class SwipeHandler {
+    constructor(element, options) {
+        this.element = element;
+        this.onSwipeLeft = options.onSwipeLeft;
+        this.onSwipeRight = options.onSwipeRight;
+        this.onMove = options.onMove;
+        this.onEnd = options.onEnd;
+        this.isMobileOnly = options.isMobileOnly || false;
+        
+        this.startX = 0;
+        this.currentX = 0;
+        this.isDragging = false;
+
+        this.init();
+    }
+
+    init() {
+        if (!this.element) return;
+        
+        this.element.addEventListener('touchstart', (e) => this.start(e), { passive: true });
+        this.element.addEventListener('touchmove', (e) => this.move(e), { passive: false });
+        this.element.addEventListener('touchend', (e) => this.end(e));
+        
+        this.element.addEventListener('mousedown', (e) => this.start(e));
+        window.addEventListener('mousemove', (e) => this.move(e));
+        window.addEventListener('mouseup', (e) => this.end(e));
+        
+        if (this.element.tagName === 'IMG') {
+            this.element.addEventListener('dragstart', (e) => e.preventDefault());
+        } else {
+            const imgs = this.element.querySelectorAll('img');
+            imgs.forEach(img => img.addEventListener('dragstart', (e) => e.preventDefault()));
+        }
+    }
+
+    start(e) {
+        if (this.isMobileOnly && window.innerWidth > 768) return;
+        this.isDragging = true;
+        this.startX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+        this.currentX = this.startX;
+    }
+
+    move(e) {
+        if (!this.isDragging) return;
+        if (this.isMobileOnly && window.innerWidth > 768) return;
+        
+        this.currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+        const diffX = this.currentX - this.startX;
+        
+        if (Math.abs(diffX) > 10 && e.cancelable) {
+            e.preventDefault();
+        }
+        
+        if (this.onMove) this.onMove(diffX);
+    }
+
+    end(e) {
+        if (!this.isDragging) return;
+        if (this.isMobileOnly && window.innerWidth > 768) return;
+        this.isDragging = false;
+        
+        const diffX = this.currentX - this.startX;
+        const threshold = 50;
+        
+        let direction = 0;
+        if (Math.abs(diffX) > threshold) {
+            if (diffX > 0) {
+                direction = -1; 
+                if (this.onSwipeRight) this.onSwipeRight();
+            } else {
+                direction = 1; 
+                if (this.onSwipeLeft) this.onSwipeLeft();
+            }
+        }
+        
+        if (this.onEnd) this.onEnd(direction, diffX);
+        
+        this.startX = 0;
+        this.currentX = 0;
+    }
+}
+
 class HeroSlider {
     constructor() {
         this.slides = document.querySelectorAll('.bg-slide');
@@ -12,6 +94,7 @@ class HeroSlider {
         this.lightboxClose = document.querySelector('.lightbox-close');
         this.btnLightboxPrev = document.querySelector('#hero-lightbox .lightbox-btn.prev');
         this.btnLightboxNext = document.querySelector('#hero-lightbox .lightbox-btn.next');
+        this.dotsContainer = document.getElementById('lightbox-dots');
 
         this.currentIndex = 0;
         this.interval = null;
@@ -47,38 +130,77 @@ class HeroSlider {
                     this.moveLightbox(1);
                 });
             }
+
+            this.setupDots();
+
+            // Swipe handler for lightbox
+            this.swipeHandler = new SwipeHandler(this.lightboxImg, {
+                isMobileOnly: false,
+                onSwipeLeft: () => this.moveLightbox(1),
+                onSwipeRight: () => this.moveLightbox(-1),
+                onMove: (diffX) => {
+                    this.lightboxImg.style.transition = 'none';
+                    this.lightboxImg.style.transform = `translateX(${diffX}px)`;
+                },
+                onEnd: () => {
+                    this.lightboxImg.style.transition = 'transform 0.3s ease-out';
+                    this.lightboxImg.style.transform = 'translateX(0)';
+                }
+            });
         }
 
         this.startAutoplay();
-        this.updateLightboxArrows(); // Garante estado inicial
+        this.updateLightboxArrows();
+    }
+
+    setupDots() {
+        if (!this.dotsContainer) return;
+        this.dotsContainer.innerHTML = '';
+        this.slides.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.classList.add('dot');
+            dot.setAttribute('aria-label', `Ir para imagem ${index + 1}`);
+            dot.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.goToSlide(index);
+                this.updateLightboxImage();
+            });
+            this.dotsContainer.appendChild(dot);
+        });
+    }
+
+    updateDots() {
+        if (!this.dotsContainer) return;
+        const dots = this.dotsContainer.querySelectorAll('.dot');
+        dots.forEach((dot, index) => {
+            if (index === this.currentIndex) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
     }
 
     updateLightboxArrows() {
         if (!this.btnLightboxPrev || !this.btnLightboxNext) return;
-        if (this.currentIndex === 0) {
-            this.btnLightboxPrev.style.display = 'none';
-        } else {
-            this.btnLightboxPrev.style.display = 'flex';
-        }
-
-        if (this.currentIndex === this.slides.length - 1) {
-            this.btnLightboxNext.style.display = 'none';
-        } else {
-            this.btnLightboxNext.style.display = 'flex';
-        }
+        this.btnLightboxPrev.style.display = this.currentIndex === 0 ? 'none' : 'flex';
+        this.btnLightboxNext.style.display = this.currentIndex === this.slides.length - 1 ? 'none' : 'flex';
+        this.updateDots();
     }
 
     openLightbox() {
         if (!this.lightbox) return;
         this.stopAutoplay();
-        
+        this.updateLightboxImage();
+        this.lightbox.classList.add('active');
+    }
+
+    updateLightboxImage() {
         const bgImageStyle = this.slides[this.currentIndex].style.backgroundImage;
         const urlMatch = bgImageStyle.match(/url\(["']?(.*?)["']?\)/);
         if (urlMatch && urlMatch[1]) {
             this.lightboxImg.src = urlMatch[1];
         }
-
-        this.lightbox.classList.add('active');
         this.updateLightboxArrows();
     }
 
@@ -89,19 +211,9 @@ class HeroSlider {
 
     moveLightbox(direction) {
         let newIndex = this.currentIndex + direction;
-        
-        // Impede de navegar além dos limites
         if (newIndex < 0 || newIndex >= this.slides.length) return;
-        
         this.goToSlide(newIndex);
-        
-        const bgImageStyle = this.slides[newIndex].style.backgroundImage;
-        const urlMatch = bgImageStyle.match(/url\(["']?(.*?)["']?\)/);
-        if (urlMatch && urlMatch[1]) {
-            this.lightboxImg.src = urlMatch[1];
-        }
-        
-        this.updateLightboxArrows();
+        this.updateLightboxImage();
     }
 
     goToSlide(index) {
@@ -266,11 +378,6 @@ class AdocaoCarousel {
         
         this.currentIndex = 0;
         this.isMobile = window.innerWidth <= 768;
-
-        // Touch variables
-        this.startX = 0;
-        this.currentX = 0;
-        this.isDragging = false;
     }
 
     init() {
@@ -279,7 +386,6 @@ class AdocaoCarousel {
         this.setupDots();
         this.updateState();
 
-        // Listeners Resize
         window.addEventListener('resize', () => {
             const wasMobile = this.isMobile;
             this.isMobile = window.innerWidth <= 768;
@@ -288,25 +394,25 @@ class AdocaoCarousel {
             }
         });
 
-        // Listeners Buttons
         if (this.btnPrev) this.btnPrev.addEventListener('click', () => this.move(-1));
         if (this.btnNext) this.btnNext.addEventListener('click', () => this.move(1));
 
-        // Touch / Swipe Listeners
-        this.track.addEventListener('touchstart', (e) => this.touchStart(e), { passive: true });
-        this.track.addEventListener('touchmove', (e) => this.touchMove(e), { passive: false }); // False para poder dar preventDefault se necessário
-        this.track.addEventListener('touchend', (e) => this.touchEnd(e));
-        
-        // Mouse drag listeners
-        this.track.addEventListener('mousedown', (e) => this.touchStart(e));
-        window.addEventListener('mousemove', (e) => this.touchMove(e));
-        window.addEventListener('mouseup', (e) => this.touchEnd(e));
-        
-        // Previne drag nativo da imagem que pode quebrar o carrossel no desktop
-        this.items.forEach(item => {
-            const img = item.querySelector('img');
-            if(img) {
-                img.addEventListener('dragstart', (e) => e.preventDefault());
+        // Swipe handler for track
+        this.swipeHandler = new SwipeHandler(this.track, {
+            isMobileOnly: true,
+            onSwipeLeft: () => this.move(1),
+            onSwipeRight: () => this.move(-1),
+            onMove: (diffX) => {
+                const itemWidth = this.items[0].offsetWidth + 15;
+                const baseMove = -(this.currentIndex * itemWidth);
+                this.track.style.transition = 'none';
+                this.track.style.transform = `translateX(${baseMove + diffX}px)`;
+            },
+            onEnd: (direction) => {
+                this.track.style.transition = 'transform 0.3s ease-out';
+                if (direction === 0) {
+                    this.goTo(this.currentIndex);
+                }
             }
         });
     }
@@ -327,7 +433,6 @@ class AdocaoCarousel {
         if (this.isMobile) {
             this.goTo(this.currentIndex);
         } else {
-            // Volta para a visualização Desktop (Grid)
             this.track.style.transform = '';
         }
     }
@@ -351,17 +456,8 @@ class AdocaoCarousel {
 
     updateArrows() {
         if (!this.btnPrev || !this.btnNext) return;
-        if (this.currentIndex === 0) {
-            this.btnPrev.style.display = 'none';
-        } else {
-            this.btnPrev.style.display = 'flex';
-        }
-
-        if (this.currentIndex === this.items.length - 1) {
-            this.btnNext.style.display = 'none';
-        } else {
-            this.btnNext.style.display = 'flex';
-        }
+        this.btnPrev.style.display = this.currentIndex === 0 ? 'none' : 'flex';
+        this.btnNext.style.display = this.currentIndex === this.items.length - 1 ? 'none' : 'flex';
     }
 
     move(direction) {
@@ -378,53 +474,6 @@ class AdocaoCarousel {
                 dot.classList.remove('active');
             }
         });
-    }
-
-    touchStart(e) {
-        if (!this.isMobile) return;
-        this.isDragging = true;
-        this.startX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-        this.currentX = this.startX;
-        this.track.style.transition = 'none'; // previne animação dura
-    }
-
-    touchMove(e) {
-        if (!this.isDragging || !this.isMobile) return;
-        
-        this.currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-        const diffX = this.currentX - this.startX;
-        
-        // Se estiver movendo horizontalmente, previne o scroll vertical nativo
-        if (Math.abs(diffX) > 10 && e.cancelable) {
-            e.preventDefault();
-        }
-        
-        const itemWidth = this.items[0].offsetWidth + 15;
-        const baseMove = -(this.currentIndex * itemWidth);
-        
-        this.track.style.transform = `translateX(${baseMove + diffX}px)`;
-    }
-
-    touchEnd(e) {
-        if (!this.isDragging || !this.isMobile) return;
-        this.isDragging = false;
-        this.track.style.transition = 'transform 0.3s ease-out';
-        
-        const diffX = this.currentX - this.startX;
-        const threshold = 50; // precisa arrastar 50px para mudar
-
-        if (Math.abs(diffX) > threshold) {
-            if (diffX > 0) {
-                this.move(-1);
-            } else {
-                this.move(1);
-            }
-        } else {
-            this.goTo(this.currentIndex);
-        }
-        
-        this.startX = 0;
-        this.currentX = 0;
     }
 }
 
