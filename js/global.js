@@ -50,16 +50,36 @@ class HeroSlider {
         }
 
         this.startAutoplay();
+        this.updateLightboxArrows(); // Garante estado inicial
+    }
+
+    updateLightboxArrows() {
+        if (!this.btnLightboxPrev || !this.btnLightboxNext) return;
+        if (this.currentIndex === 0) {
+            this.btnLightboxPrev.style.display = 'none';
+        } else {
+            this.btnLightboxPrev.style.display = 'flex';
+        }
+
+        if (this.currentIndex === this.slides.length - 1) {
+            this.btnLightboxNext.style.display = 'none';
+        } else {
+            this.btnLightboxNext.style.display = 'flex';
+        }
     }
 
     openLightbox() {
+        if (!this.lightbox) return;
+        this.stopAutoplay();
+        
         const bgImageStyle = this.slides[this.currentIndex].style.backgroundImage;
         const urlMatch = bgImageStyle.match(/url\(["']?(.*?)["']?\)/);
         if (urlMatch && urlMatch[1]) {
             this.lightboxImg.src = urlMatch[1];
-            this.lightbox.classList.add('active');
-            if (this.interval) clearInterval(this.interval);
         }
+
+        this.lightbox.classList.add('active');
+        this.updateLightboxArrows();
     }
 
     closeLightbox() {
@@ -68,8 +88,11 @@ class HeroSlider {
     }
 
     moveLightbox(direction) {
-        let newIndex = (this.currentIndex + direction) % this.slides.length;
-        if (newIndex < 0) newIndex = this.slides.length - 1;
+        let newIndex = this.currentIndex + direction;
+        
+        // Impede de navegar além dos limites
+        if (newIndex < 0 || newIndex >= this.slides.length) return;
+        
         this.goToSlide(newIndex);
         
         const bgImageStyle = this.slides[newIndex].style.backgroundImage;
@@ -77,6 +100,8 @@ class HeroSlider {
         if (urlMatch && urlMatch[1]) {
             this.lightboxImg.src = urlMatch[1];
         }
+        
+        this.updateLightboxArrows();
     }
 
     goToSlide(index) {
@@ -265,13 +290,21 @@ class AdocaoCarousel {
 
         // Touch / Swipe Listeners
         this.track.addEventListener('touchstart', (e) => this.touchStart(e), { passive: true });
-        this.track.addEventListener('touchmove', (e) => this.touchMove(e), { passive: true });
-        this.track.addEventListener('touchend', () => this.touchEnd());
+        this.track.addEventListener('touchmove', (e) => this.touchMove(e), { passive: false }); // False para poder dar preventDefault se necessário
+        this.track.addEventListener('touchend', (e) => this.touchEnd(e));
         
         // Mouse drag listeners
         this.track.addEventListener('mousedown', (e) => this.touchStart(e));
         window.addEventListener('mousemove', (e) => this.touchMove(e));
-        window.addEventListener('mouseup', () => this.touchEnd());
+        window.addEventListener('mouseup', (e) => this.touchEnd(e));
+        
+        // Previne drag nativo da imagem que pode quebrar o carrossel no desktop
+        this.items.forEach(item => {
+            const img = item.querySelector('img');
+            if(img) {
+                img.addEventListener('dragstart', (e) => e.preventDefault());
+            }
+        });
     }
 
     setupDots() {
@@ -309,6 +342,22 @@ class AdocaoCarousel {
         
         this.track.style.transform = `translateX(-${moveAmount}px)`;
         this.updateDots();
+        this.updateArrows();
+    }
+
+    updateArrows() {
+        if (!this.btnPrev || !this.btnNext) return;
+        if (this.currentIndex === 0) {
+            this.btnPrev.style.display = 'none';
+        } else {
+            this.btnPrev.style.display = 'flex';
+        }
+
+        if (this.currentIndex === this.items.length - 1) {
+            this.btnNext.style.display = 'none';
+        } else {
+            this.btnNext.style.display = 'flex';
+        }
     }
 
     move(direction) {
@@ -337,8 +386,14 @@ class AdocaoCarousel {
 
     touchMove(e) {
         if (!this.isDragging || !this.isMobile) return;
+        
         this.currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
         const diffX = this.currentX - this.startX;
+        
+        // Se estiver movendo horizontalmente, previne o scroll vertical nativo
+        if (Math.abs(diffX) > 10 && e.cancelable) {
+            e.preventDefault();
+        }
         
         const itemWidth = this.items[0].offsetWidth + 15;
         const baseMove = -(this.currentIndex * itemWidth);
@@ -346,7 +401,7 @@ class AdocaoCarousel {
         this.track.style.transform = `translateX(${baseMove + diffX}px)`;
     }
 
-    touchEnd() {
+    touchEnd(e) {
         if (!this.isDragging || !this.isMobile) return;
         this.isDragging = false;
         this.track.style.transition = 'transform 0.3s ease-out';
