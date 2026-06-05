@@ -185,13 +185,21 @@
         gap: 15px;
         margin-top: 0;
         padding: 0 20px;
+        align-items: center; /* Evita que o flexbox estique a altura (bug do Samsung) */
     }
     
     .item-adocao {
-        min-width: calc(100% - 40px); /* O card ocupa a tela deixando 20px de cada lado */
-        flex: 0 0 auto;
+        width: 85%; /* Menor para não explodir a tela */
+        flex: 0 0 85%;
+        max-width: 320px; /* Limite de segurança para telas grandes */
         scroll-snap-align: center;
         border-radius: 12px;
+        aspect-ratio: 1 / 1 !important; /* Força o formato Quadrado (Instagram Grid) */
+    }
+    
+    .item-adocao img {
+        object-fit: cover;
+        object-position: center 20%; /* Alinha o foco mais para o topo, evitando cortar rostos */
     }
 
     .carousel-btn {
