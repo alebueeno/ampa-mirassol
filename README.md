@@ -25,7 +25,7 @@ O projeto está publicado oficialmente na internet e pode ser acessado em:
 O site atua como um canal digital centralizado para a ONG, entregando uma experiência *premium* focada em conversão (doações) e visibilidade (adoções). As principais características incluem:
 
 - **Design Institucional Premium (UI/UX):** Interface baseada na paleta oficial da ONG (Azul Real e Azul Celeste), enriquecida com técnicas de *Glassmorphism* (painéis translúcidos) e pares tipográficos modernos (*Outfit* e *Plus Jakarta Sans*).
-- **Galeria de Adoções Híbrida:** Uma seção inovadora dedicada às histórias de adoção. Em telas grandes (Desktop), exibe um elegante *Masonry Grid*. Em dispositivos móveis (Smartphones), transforma-se automaticamente em um **Carrossel Interativo** com suporte a rolagem nativa por toque (*Touch Swipe*).
+- **Galeria de Adoções Universal ("Grid do Instagram"):** Em telas grandes (Desktop), a seção exibe um elegante Grid horizontal. Em dispositivos móveis, transforma-se num **Carrossel Interativo** extremamente fluido graças à integração de rolagem nativa via placa de vídeo (CSS Scroll Snap). As imagens são travadas na proporção perfeita de 1:1, utilizando técnicas modernas de `object-position` para garantir que os rostos nunca sejam cortados indepedentemente do tamanho da tela.
 - **Hero Dinâmico e Lightbox:** Cabeçalho interativo com um sistema de *slider* em background e uma galeria expansível em tela cheia (Lightbox Modal) com controles de navegação completos (Setas, Swipe Tátil e Paginação em Dots).
 - **Interatividade & Engajamento:** 
   - Animações fluídas de entrada (*Scroll Reveal*).
@@ -42,11 +42,12 @@ A aplicação foi construída com foco absoluto em performance, dispensando o us
   - Layouts complexos utilizando **CSS Grid** e **Flexbox**.
   - Variáveis HSL nativas para padronização de cores e temas dinâmicos.
   - Efeitos visuais avançados como *Parallax*, *Glassmorphism*, e transições `cubic-bezier`.
-  - Media Queries rigorosas para garantir a experiência *Mobile First*.
+  - **CSS Scroll Snap & Aspect Ratios:** Uso massivo da nova engine nativa de rolagem (dispensando scripts lentos de simulação tátil) e do modelo rígido de enquadramento universal de fotos, impedindo deformações de tela em múltiplos tamanhos de smartphones.
+  - Media Queries e Container Queries rigorosas para garantir a experiência *Mobile First* fluída e elástica.
 - **JavaScript (Vanilla) & POO**: 
   - Arquitetura 100% estruturada no paradigma de **Programação Orientada a Objetos (OOP)**.
-  - Classes modulares, desacopladas e com alto índice de reaproveitamento (`HeroSlider`, `AdocaoCarousel`, `SwipeHandler`, `PixCopier`, etc).
-  - Implementação nativa de cálculos matemáticos para detecção de gestos na tela (`touchstart`, `touchmove`, `touchend`), entregando um motor de rolagem customizado (Swipe) tanto para galerias mobile quanto para o Lightbox.
+  - Classes modulares, limpas e com alto índice de reaproveitamento (`HeroSlider`, `AdocaoCarousel`, `PixCopier`, `MobileMenu`, etc).
+  - **Delegação Tecnológica (JS vs CSS):** Em refatoração profunda, scripts manuais de física e atrito matemático de "drag" foram extintos. A responsabilidade da rolagem foi repassada para os navegadores nativos (`C++`) através de gatilhos CSS, enquanto o Javascript agora atua apenas de maneira assíncrona gerenciando o avanço (`scrollTo`) e sincronizando indicadores visuais com altíssima perfomance.
 - **Fontes e Ícones**: Integração com Google Fonts e Font Awesome.
 
 ---
