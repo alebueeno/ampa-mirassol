@@ -524,15 +524,25 @@
 }
 .lightbox-close {
     position: absolute;
-    top: 20px;
-    right: 30px;
+    top: max(20px, env(safe-area-inset-top, 20px));
+    right: max(20px, env(safe-area-inset-right, 20px));
     color: white;
-    font-size: 40px;
+    font-size: 35px;
     cursor: pointer;
-    transition: color 0.3s;
+    transition: all 0.3s;
+    z-index: 10005;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    backdrop-filter: blur(4px);
 }
 .lightbox-close:hover {
-    color: var(--cor-secundaria);
+    background: var(--cor-secundaria);
+    transform: scale(1.1);
 }
 
 .lightbox-btn {
