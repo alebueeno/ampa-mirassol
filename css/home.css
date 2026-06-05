@@ -102,11 +102,11 @@
 }
 
 .link-hero-destaque {
-    color: #FFD700;
+    color: #FFD700 !important;
     text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     font-style: italic;
     font-weight: 800;
-    text-decoration: none;
+    text-decoration: none !important;
     position: relative;
     transition: color 0.3s ease;
     display: inline-block;
@@ -119,14 +119,14 @@
     left: 0;
     width: 100%;
     height: 4px;
-    background-color: #FFD700;
+    background-color: #FFD700 !important;
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .link-hero-destaque:hover {
-    color: #FFF;
+    color: #FFF !important;
 }
 
 .link-hero-destaque:hover::after {
