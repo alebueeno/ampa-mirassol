@@ -264,8 +264,6 @@ class AdocaoCarousel {
         this.container = document.querySelector('.carousel-container');
         this.track = document.querySelector('.carousel-track');
         this.items = document.querySelectorAll('.item-adocao');
-        this.btnPrev = document.querySelector('.carousel-btn.prev');
-        this.btnNext = document.querySelector('.carousel-btn.next');
         this.dotsContainer = document.getElementById('adocao-dots');
         
         this.currentIndex = 0;
@@ -276,7 +274,6 @@ class AdocaoCarousel {
         if (!this.track || this.items.length === 0) return;
 
         this.setupDots();
-        this.updateArrows();
 
         // Ouve o evento de scroll nativo em vez de calcular drag na mão
         if (this.container) {
@@ -292,9 +289,6 @@ class AdocaoCarousel {
                 }
             }
         });
-
-        if (this.btnPrev) this.btnPrev.addEventListener('click', () => this.move(-1));
-        if (this.btnNext) this.btnNext.addEventListener('click', () => this.move(1));
     }
 
     onScroll() {
@@ -308,7 +302,6 @@ class AdocaoCarousel {
         if (this.currentIndex !== index) {
             this.currentIndex = index;
             this.updateDots();
-            this.updateArrows();
         }
     }
 
@@ -344,14 +337,9 @@ class AdocaoCarousel {
         });
         
         this.updateDots();
-        this.updateArrows();
     }
 
-    updateArrows() {
-        if (!this.btnPrev || !this.btnNext) return;
-        this.btnPrev.style.display = this.currentIndex === 0 ? 'none' : 'flex';
-        this.btnNext.style.display = this.currentIndex === this.items.length - 1 ? 'none' : 'flex';
-    }
+
 
     move(direction) {
         this.goTo(this.currentIndex + direction);

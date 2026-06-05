@@ -202,12 +202,7 @@
         object-position: center 20%; /* Alinha o foco mais para o topo, evitando cortar rostos */
     }
 
-    .carousel-btn {
-        display: none !important; /* Remove as setas no mobile para não poluir a tela */
-    }
-    
-    .carousel-btn.prev { left: -15px; }
-    .carousel-btn.next { right: -15px; }
+
 
     .carousel-dots {
         display: flex;
