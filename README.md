@@ -8,6 +8,18 @@ Este site foi concebido e desenvolvido voluntariamente como parte das atividades
 
 O projeto é fruto do esforço colaborativo de uma equipe de estudantes dedicados a aplicar conhecimentos acadêmicos em soluções tecnológicas com impacto social real. Nossa equipe multidisciplinar trabalhou de forma integrada nas etapas de pesquisa, levantamento de requisitos, design de interface (UI/UX) e desenvolvimento web (Front-End), unindo habilidades para entregar uma plataforma profissional que visa aumentar a visibilidade e facilitar o recebimento de doações pela instituição.
 
+## 🌐 Acesso Online & Deploy
+
+O projeto está publicado oficialmente na internet e pode ser acessado em:
+- **Domínio Oficial:** [https://www.ongampa.com.br](https://www.ongampa.com.br) (com redirecionamento automático de `http://ongampa.com.br`)
+- **Hospedagem & CI/CD:** Implantado através do **Cloudflare Pages**, garantindo deploy automatizado integrado ao repositório GitHub.
+- **Camada de Segurança na Borda (Edge):** 
+  - Conexão segura sob criptografia **TLS Completa (Full SSL)**.
+  - Redirecionamento permanente forçado para conexões seguras (**Always Use HTTPS**).
+  - Política ativa de **HSTS** (Strict-Transport-Security) com duração de 12 meses, incluindo proteção a subdomínios, cabeçalho de proteção contra MIME-sniffing (`X-Content-Type-Options: nosniff`) e inclusão na lista de pré-carregamento dos navegadores (**Preload**).
+  - Proteção contra requisições automatizadas maliciosas via **Bot Fight Mode**.
+- **Financiamento:** O domínio oficial `ongampa.com.br` foi registrado e pago integralmente com **recursos próprios da equipe de estudantes**, como uma contribuição voluntária permanente para a expansão e sustentabilidade digital da associação.
+
 ## 🎯 Funcionalidades e Características
 
 O site atua como um canal digital centralizado para a ONG, entregando uma experiência *premium* focada em conversão (doações) e visibilidade (adoções). As principais características incluem:
@@ -36,20 +48,6 @@ A aplicação foi construída com foco absoluto em performance, dispensando o us
   - Classes modulares, desacopladas e com alto índice de reaproveitamento (`HeroSlider`, `AdocaoCarousel`, `SwipeHandler`, `PixCopier`, etc).
   - Implementação nativa de cálculos matemáticos para detecção de gestos na tela (`touchstart`, `touchmove`, `touchend`), entregando um motor de rolagem customizado (Swipe) tanto para galerias mobile quanto para o Lightbox.
 - **Fontes e Ícones**: Integração com Google Fonts e Font Awesome.
-
-## 🤝 Acesso e Execução Local
-
-O projeto foi construído de forma totalmente estática. Para executá-lo localmente, não é necessário instalar dependências ou rodar servidores complexos (como Node.js). 
-
-```bash
-# Clone o repositório
-git clone https://github.com/alebueeno/ampa-mirassol.git
-
-# Acesse o diretório
-cd ampa-mirassol
-
-# Basta abrir o arquivo index.html diretamente no seu navegador!
-```
 
 ---
 
