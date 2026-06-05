@@ -102,7 +102,8 @@
 }
 
 .link-hero-destaque {
-    color: var(--cor-secundaria);
+    color: #FFD700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     font-style: italic;
     font-weight: 800;
     text-decoration: none;
@@ -118,14 +119,14 @@
     left: 0;
     width: 100%;
     height: 4px;
-    background-color: var(--cor-secundaria);
+    background-color: #FFD700;
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .link-hero-destaque:hover {
-    color: var(--texto-claro);
+    color: #FFF;
 }
 
 .link-hero-destaque:hover::after {
@@ -510,12 +511,16 @@
     opacity: 1;
     visibility: visible;
 }
-.lightbox img {
+#lightbox-img {
     max-width: 95%;
     max-height: 95%;
     border-radius: 12px;
     box-shadow: 0 0 30px rgba(0,0,0,0.8);
     object-fit: contain;
+    transition: transform 0.3s ease-out, opacity 0.3s;
+    touch-action: none; /* Previne zoom e scroll nativo ao arrastar a foto */
+    user-select: none;
+    -webkit-user-drag: none;
 }
 .lightbox-close {
     position: absolute;

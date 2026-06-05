@@ -137,8 +137,7 @@
         width: 100%;
     }
 
-    /* Correção do bug do fundo (Parallax) não aparecer em iPhones/Mobile */
-    .bg-parallax {
+    .bg-parallax, .bg-slide {
         background-attachment: scroll;
     }
 
