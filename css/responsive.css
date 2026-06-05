@@ -184,30 +184,18 @@
         flex-wrap: nowrap;
         gap: 15px;
         margin-top: 0;
+        padding: 0 20px;
     }
     
     .item-adocao {
-        min-width: calc(100% - 40px); /* Deixa vazar um pouquinho do próximo card */
+        min-width: calc(100% - 40px); /* O card ocupa a tela deixando 20px de cada lado */
         flex: 0 0 auto;
         scroll-snap-align: center;
         border-radius: 12px;
     }
 
     .carousel-btn {
-        display: flex;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(255,255,255,0.9);
-        border: none;
-        width: 40px; height: 40px;
-        border-radius: 50%;
-        justify-content: center;
-        align-items: center;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        z-index: 10;
-        cursor: pointer;
-        color: var(--cor-primaria);
+        display: none !important; /* Remove as setas no mobile para não poluir a tela */
     }
     
     .carousel-btn.prev { left: -15px; }
@@ -234,9 +222,5 @@
         transform: scale(1.2);
     }
 
-    /* Botões Flutuantes */
-    #btnTop {
-        bottom: 20px;
-        right: 20px;
-    }
+
 }

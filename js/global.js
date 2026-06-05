@@ -191,36 +191,6 @@ class ScrollReveal {
     }
 }
 
-class BackToTopButton {
-    constructor() {
-        this.btnTop = document.createElement('button');
-        this.btnTop.id = 'btnTop';
-        this.btnTop.title = 'Voltar ao topo';
-        this.btnTop.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
-    }
-
-    init() {
-        document.body.appendChild(this.btnTop);
-
-        // Mostrar/ocultar conforme o scroll
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 400) {
-                this.btnTop.classList.add('show');
-            } else {
-                this.btnTop.classList.remove('show');
-            }
-        });
-
-        // Evento de clique para voltar ao topo suavemente
-        this.btnTop.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    }
-}
-
 class PixCopier {
     constructor() {
         this.btnCopiarPix = document.getElementById('btn-copiar-pix');
@@ -403,7 +373,6 @@ class AdocaoCarousel {
 class App {
     constructor() {
         this.scrollReveal = new ScrollReveal();
-        this.backToTop = new BackToTopButton();
         this.pixCopier = new PixCopier();
         this.mobileMenu = new MobileMenu();
         this.heroSlider = new HeroSlider();
@@ -412,7 +381,6 @@ class App {
 
     init() {
         this.scrollReveal.init();
-        this.backToTop.init();
         this.pixCopier.init();
         this.mobileMenu.init();
         this.heroSlider.init();
