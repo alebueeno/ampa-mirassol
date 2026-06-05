@@ -166,23 +166,30 @@
     }
     
     .carousel-container {
-        overflow: hidden;
+        overflow-x: auto;
+        overflow-y: hidden;
         width: 100%;
-        touch-action: pan-y pinch-zoom; /* Permite scroll vertical, previne horizontal */
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none; /* Oculta scrollbar no Firefox */
+        -webkit-overflow-scrolling: touch;
         border-radius: 12px;
+        scroll-behavior: smooth;
+    }
+    .carousel-container::-webkit-scrollbar {
+        display: none; /* Oculta scrollbar Chrome/Safari */
     }
 
     .carousel-track {
         display: flex;
         flex-wrap: nowrap;
         gap: 15px;
-        transition: transform 0.3s ease-out;
         margin-top: 0;
     }
-
+    
     .item-adocao {
-        flex: 0 0 85%; /* Exibe 1 item completo e parte do próximo */
-        max-width: 85%;
+        min-width: calc(100% - 40px); /* Deixa vazar um pouquinho do próximo card */
+        flex: 0 0 auto;
+        scroll-snap-align: center;
         border-radius: 12px;
     }
 

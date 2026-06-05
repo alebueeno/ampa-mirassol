@@ -3,87 +3,8 @@
  * Implementação Orientada a Objetos (OOP)
  */
 
-class SwipeHandler {
-    constructor(element, options) {
-        this.element = element;
-        this.onSwipeLeft = options.onSwipeLeft;
-        this.onSwipeRight = options.onSwipeRight;
-        this.onMove = options.onMove;
-        this.onEnd = options.onEnd;
-        this.isMobileOnly = options.isMobileOnly || false;
-        
-        this.startX = 0;
-        this.currentX = 0;
-        this.isDragging = false;
-
-        this.init();
-    }
-
-    init() {
-        if (!this.element) return;
-        
-        this.element.addEventListener('touchstart', (e) => this.start(e), { passive: true });
-        this.element.addEventListener('touchmove', (e) => this.move(e), { passive: false });
-        this.element.addEventListener('touchend', (e) => this.end(e));
-        
-        this.element.addEventListener('mousedown', (e) => this.start(e));
-        window.addEventListener('mousemove', (e) => this.move(e));
-        window.addEventListener('mouseup', (e) => this.end(e));
-        
-        if (this.element.tagName === 'IMG') {
-            this.element.addEventListener('dragstart', (e) => e.preventDefault());
-        } else {
-            const imgs = this.element.querySelectorAll('img');
-            imgs.forEach(img => img.addEventListener('dragstart', (e) => e.preventDefault()));
-        }
-    }
-
-    start(e) {
-        if (this.isMobileOnly && window.innerWidth > 768) return;
-        this.isDragging = true;
-        this.startX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-        this.currentX = this.startX;
-    }
-
-    move(e) {
-        if (!this.isDragging) return;
-        if (this.isMobileOnly && window.innerWidth > 768) return;
-        
-        this.currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-        const diffX = this.currentX - this.startX;
-        
-        if (Math.abs(diffX) > 10 && e.cancelable) {
-            e.preventDefault();
-        }
-        
-        if (this.onMove) this.onMove(diffX);
-    }
-
-    end(e) {
-        if (!this.isDragging) return;
-        if (this.isMobileOnly && window.innerWidth > 768) return;
-        this.isDragging = false;
-        
-        const diffX = this.currentX - this.startX;
-        const threshold = 50;
-        
-        let direction = 0;
-        if (Math.abs(diffX) > threshold) {
-            if (diffX > 0) {
-                direction = -1; 
-                if (this.onSwipeRight) this.onSwipeRight();
-            } else {
-                direction = 1; 
-                if (this.onSwipeLeft) this.onSwipeLeft();
-            }
-        }
-        
-        if (this.onEnd) this.onEnd(direction, diffX);
-        
-        this.startX = 0;
-        this.currentX = 0;
-    }
-}
+/* Classe SwipeHandler foi completamente removida em favor do motor CSS Nativo (Scroll Snap e Touch) 
+   seguindo a arquitetura definida na SKILL responsividade. */
 
 class HeroSlider {
     constructor() {
@@ -133,18 +54,18 @@ class HeroSlider {
 
             this.setupDots();
 
-            // Swipe handler for lightbox
-            this.swipeHandler = new SwipeHandler(this.lightboxImg, {
-                isMobileOnly: false,
-                onSwipeLeft: () => this.moveLightbox(1),
-                onSwipeRight: () => this.moveLightbox(-1),
-                onMove: (diffX) => {
-                    this.lightboxImg.style.transition = 'none';
-                    this.lightboxImg.style.transform = `translateX(${diffX}px)`;
-                },
-                onEnd: () => {
-                    this.lightboxImg.style.transition = 'transform 0.3s ease-out';
-                    this.lightboxImg.style.transform = 'translateX(0)';
+            // Detecção nativa simples de swipe (Sem injeção de 3D transform para previnir bugs no Android)
+            let touchStartX = 0;
+            this.lightboxImg.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+            }, { passive: true });
+            
+            this.lightboxImg.addEventListener('touchend', (e) => {
+                const touchEndX = e.changedTouches[0].clientX;
+                const diffX = touchEndX - touchStartX;
+                if (Math.abs(diffX) > 50) {
+                    if (diffX > 0) this.moveLightbox(-1);
+                    else this.moveLightbox(1);
                 }
             });
         }
@@ -370,6 +291,7 @@ class MobileMenu {
 
 class AdocaoCarousel {
     constructor() {
+        this.container = document.querySelector('.carousel-container');
         this.track = document.querySelector('.carousel-track');
         this.items = document.querySelectorAll('.item-adocao');
         this.btnPrev = document.querySelector('.carousel-btn.prev');
@@ -384,44 +306,40 @@ class AdocaoCarousel {
         if (!this.track || this.items.length === 0) return;
 
         this.setupDots();
-        this.updateState();
+        this.updateArrows();
+
+        // Ouve o evento de scroll nativo em vez de calcular drag na mão
+        if (this.container) {
+            this.container.addEventListener('scroll', () => this.onScroll(), { passive: true });
+        }
 
         window.addEventListener('resize', () => {
             const wasMobile = this.isMobile;
             this.isMobile = window.innerWidth <= 768;
             if (wasMobile !== this.isMobile) {
-                this.updateState();
+                if (!this.isMobile && this.container) {
+                    this.container.scrollLeft = 0;
+                }
             }
         });
 
         if (this.btnPrev) this.btnPrev.addEventListener('click', () => this.move(-1));
         if (this.btnNext) this.btnNext.addEventListener('click', () => this.move(1));
+    }
 
-        // Swipe handler for track
-        this.swipeHandler = new SwipeHandler(this.track, {
-            isMobileOnly: true,
-            onSwipeLeft: () => this.move(1),
-            onSwipeRight: () => this.move(-1),
-            onMove: (diffX) => {
-                const itemWidth = this.items[0].offsetWidth;
-                const gap = 15;
-                let baseMove = -(this.currentIndex * (itemWidth + gap));
-                
-                if (this.currentIndex === this.items.length - 1) {
-                    const containerWidth = this.track.parentElement.offsetWidth;
-                    baseMove = -(this.currentIndex * (itemWidth + gap)) + (containerWidth - itemWidth);
-                }
-                
-                this.track.style.transition = 'none';
-                this.track.style.transform = `translateX(${baseMove + diffX}px)`;
-            },
-            onEnd: (direction) => {
-                this.track.style.transition = 'transform 0.3s ease-out';
-                if (direction === 0) {
-                    this.goTo(this.currentIndex);
-                }
-            }
-        });
+    onScroll() {
+        if (!this.isMobile || !this.container) return;
+        const itemWidth = this.items[0].offsetWidth + 15; // card width + gap
+        let index = Math.round(this.container.scrollLeft / itemWidth);
+        
+        if (index < 0) index = 0;
+        if (index >= this.items.length) index = this.items.length - 1;
+        
+        if (this.currentIndex !== index) {
+            this.currentIndex = index;
+            this.updateDots();
+            this.updateArrows();
+        }
     }
 
     setupDots() {
@@ -434,18 +352,11 @@ class AdocaoCarousel {
             dot.addEventListener('click', () => this.goTo(index));
             this.dotsContainer.appendChild(dot);
         });
-    }
-
-    updateState() {
-        if (this.isMobile) {
-            this.goTo(this.currentIndex);
-        } else {
-            this.track.style.transform = '';
-        }
+        this.updateDots();
     }
 
     goTo(index) {
-        if (!this.isMobile) return;
+        if (!this.isMobile || !this.container) return;
         
         if (index < 0) index = 0;
         if (index >= this.items.length) index = this.items.length - 1;
@@ -454,15 +365,14 @@ class AdocaoCarousel {
         
         const itemWidth = this.items[0].offsetWidth;
         const gap = 15;
-        let moveAmount = this.currentIndex * (itemWidth + gap);
+        let scrollAmount = index * (itemWidth + gap);
         
-        // No último slide, ajusta para colar na direita e mostrar o item anterior
-        if (this.currentIndex === this.items.length - 1) {
-            const containerWidth = this.track.parentElement.offsetWidth;
-            moveAmount = (this.currentIndex * (itemWidth + gap)) - (containerWidth - itemWidth);
-        }
+        // Rolagem CSS nativa perfeita e acelerada por hardware
+        this.container.scrollTo({
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
         
-        this.track.style.transform = `translateX(-${moveAmount}px)`;
         this.updateDots();
         this.updateArrows();
     }
